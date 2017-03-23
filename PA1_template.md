@@ -1,13 +1,9 @@
----
-title: "Reproducible Research: Peer Assessment 1"
-output: 
-  html_document:
-    keep_md: true
----
+# Reproducible Research: Peer Assessment 1
 
 
 ## Loading and preprocessing the data
-```{r}
+
+```r
 # create the folder that will contain data file
 if (!file.exists("data")) { dir.create("data") }
 # unzip the archive and store it in the <./data> folder
@@ -28,7 +24,8 @@ AMD_original$corDate <- as.POSIXct(AMD_original$date)
 
 The Hystogram of the total number of steps taken each day is obtained using this code (note that mean and median are also added):
 
-```{r}
+
+```r
 # Total Number of Steps taken each day
 TotalNumberOfStepsEachDay <- aggregate(steps~corDate, data=AMD_original, FUN=sum, na.rm=TRUE)
 
@@ -46,29 +43,44 @@ abline(v = median(TotalNumberOfStepsEachDay$steps), col = "blue", lwd = 1)
 abline(v = mean(TotalNumberOfStepsEachDay$steps), col = "green", lwd = 1)
 ```
 
+![](PA1_template_files/figure-html/unnamed-chunk-2-1.png)<!-- -->
+
 
 ## Mean and median numbers of steps taken each day
 
 Mean and median numbers of steps taken each day can be found using this code:
 
-```{r}
-mean(TotalNumberOfStepsEachDay$steps)
-median(TotalNumberOfStepsEachDay$steps)
 
+```r
+mean(TotalNumberOfStepsEachDay$steps)
+```
+
+```
+## [1] 10766.19
+```
+
+```r
+median(TotalNumberOfStepsEachDay$steps)
+```
+
+```
+## [1] 10765
 ```
 
 ## Time series plot of the average number of steps taken
 
 In order to construct the time series plot of the average number of steps taken, the data must be "aggregated" using the following code:
 
-```{r}
+
+```r
 # Average Number of Steps taken each day
 AverageNumberOfStepsEachDay <- aggregate(steps~corDate, data=AMD_original, FUN=mean, na.rm=TRUE)
 ```
 
 Time series plot of the average number of steps taken is constructed using this code:
 
-```{r}
+
+```r
 # Plot of Average Number of Steps taken each day
 with(AverageNumberOfStepsEachDay,
      plot(steps~corDate, 
@@ -79,6 +91,8 @@ with(AverageNumberOfStepsEachDay,
           )
      )
 ```
+
+![](PA1_template_files/figure-html/unnamed-chunk-5-1.png)<!-- -->
 
 
 
