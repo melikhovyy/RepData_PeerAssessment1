@@ -79,20 +79,20 @@ In order to construct the time series plot of the average number of steps taken,
 
 
 ```r
-# Average Number of Steps taken each day
-AverageNumberOfStepsEachDay <- aggregate(steps~date, data=AMD_original, FUN=mean, na.rm=TRUE)
+# Average Number of Steps taken over intervals
+AverageNumberOfStepsOverInterval <- aggregate(steps~interval, data=AMD_original, FUN=mean, na.rm=TRUE)
 ```
 
 Time series plot of the average number of steps taken is constructed using this code:
 
 
 ```r
-# Plot of Average Number of Steps taken each day
-with(AverageNumberOfStepsEachDay,
-     plot(steps~date, 
+# Plot of Average Number of Steps taken over intervals
+with(AverageNumberOfStepsOverInterval,
+     plot(steps~interval, 
           type="l",
           col="black", 
-          xlab="Month of the year 2012", 
+          xlab="interval", 
           ylab="Average Number of Steps"
           )
      )
@@ -100,30 +100,31 @@ with(AverageNumberOfStepsEachDay,
 
 ![](PA1_template_files/figure-html/unnamed-chunk-5-1.png)<!-- -->
 
-In order to find the 5-minute interval that, on average, contains the maximum number of steps, the original data has to be put in descendng order in steps. Then, the top row is the row with the maximum number of steps. It is done with the following code:
+In order to find the 5-minute interval that, on average, contains the maximum number of steps, the original data has to be put in descendng order in steps. Then, the top row is the row with the maximum number of average steps. 
 
 
 ```r
 # Sorting the original data and accessing the first row
-AMD_original[order(-AMD_original$steps),][1,]
+AverageNumberOfStepsOverInterval[order(-AverageNumberOfStepsOverInterval$steps),][1,]
 ```
 
 ```
-##       steps       date interval
-## 16492   806 2012-11-27      615
+##     interval    steps
+## 104      835 206.1698
 ```
 
-The 5-minute interval that, on average, contains the maximum number of steps is this one:
+The 5-minute interval that, on average, contains the maximum number of steps is identified as:
 
 
 ```r
 # Accessing the correct row, column:
-AMD_original[order(-AMD_original$steps),]$interval[1]
+AverageNumberOfStepsOverInterval[order(-AverageNumberOfStepsOverInterval$steps),]$interval[1]
 ```
 
 ```
-## [1] 615
+## [1] 835
 ```
+
 
 ## Imputing missing data
 
