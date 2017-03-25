@@ -1,3 +1,11 @@
+# Peer-graded Assignment: Course Project 1
+
+The code in this repo is to address the Assignment for the Course Project 1
+
+---------------
+
+The text below describes the assignment.
+
 ## Introduction
 
 It is now possible to collect a large amount of data about personal
